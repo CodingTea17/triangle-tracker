@@ -8,11 +8,7 @@ function isEquilateral(side1, side2, side3){
 }
 
 function notATriangle(side1, side2, side3){
-  if((side3 + side2) <= side1){
-    return true;
-  } else if ((side3 + side1) <= side2) {
-    return true;
-  } else if ((side1 + side2) <= side3) {
+  if(((side3 + side2) <= side1) || ((side3 + side1) <= side2) || ((side1 + side2) <= side3)) {
     return true;
   } else {
     return false;
@@ -20,11 +16,7 @@ function notATriangle(side1, side2, side3){
 }
 
 function isIsosceles(side1, side2, side3){
-  if (side1 === side2) {
-    return true;
-  } else if (side1 === side3) {
-    return true;
-  } else if (side3 === side2) {
+  if ((side1 === side2) || (side1 === side3) || (side3 === side2)) {
     return true;
   } else {
     return false;
@@ -41,14 +33,14 @@ $(document).ready(function() {
     var bottom = parseInt($("#sideBottom").val());
 
     if (notATriangle(sideLeft, sideRight, bottom)){
-      $("#whatTriangle").text("NAT");
+      $("#whatTriangle").text("That is NOT a triangle!");
     } else if (isEquilateral(sideLeft, sideRight, bottom)){
-      $("#whatTriangle").text("EQL");
+      $("#whatTriangle").text("That is a Equilateral!");
     } else if (isIsosceles(sideLeft, sideRight, bottom)){
-      $("#whatTriangle").text("ISC");
+      $("#whatTriangle").text("That is a Isosceles!");
     } else {
       // THE PART THAT PUTS TEXT INTO THE "whatTriangle" ID
-      $("#whatTriangle").text("Scalene");
+      $("#whatTriangle").text("That is a Scalene");
     }
     $("#whatTriangle").show();
   });
